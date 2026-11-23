@@ -140,9 +140,9 @@ function bindEvents() {
     renderGallery();
   });
 
-  // 事件委派：處理卡片內的「★ 收藏按鈕」、「複製按鈕」與「底部小標籤點擊」
+  // 事件委派：處理卡片內的「收藏膠囊按鈕」、「複製按鈕」與「底部小標籤點擊」
   galleryGrid.addEventListener("click", (e) => {
-    // 1. 點擊右上角星星收藏按鈕
+    // 1. 點擊右上角收藏膠囊按鈕
     const favBtn = e.target.closest(".fav-btn");
     if (favBtn) {
       const favKey = favBtn.dataset.favkey;
@@ -172,6 +172,19 @@ function bindEvents() {
   });
 }
 
+// 產生按鈕內部的 SVG 星芒圖示與文字
+function getFavBtnInnerHTML(isFav) {
+  const svgIcon = isFav
+    ? `<svg class="fav-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+       </svg>`
+    : `<svg class="fav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+       </svg>`;
+
+  return `${svgIcon}<span>${isFav ? "已收藏" : "收藏"}</span>`;
+}
+
 // 切換收藏狀態
 function toggleFavorite(favKey, btnElement) {
   const cardEl = btnElement.closest(".prompt-card");
@@ -180,7 +193,7 @@ function toggleFavorite(favKey, btnElement) {
   if (isNowFav) {
     favoriteSet.add(favKey);
     btnElement.classList.add("active");
-    btnElement.textContent = "★";
+    btnElement.innerHTML = getFavBtnInnerHTML(true);
     btnElement.title = "取消收藏";
     btnElement.setAttribute("aria-pressed", "true");
     if (cardEl) cardEl.classList.add("is-favorited");
@@ -188,7 +201,7 @@ function toggleFavorite(favKey, btnElement) {
   } else {
     favoriteSet.delete(favKey);
     btnElement.classList.remove("active");
-    btnElement.textContent = "☆";
+    btnElement.innerHTML = getFavBtnInnerHTML(false);
     btnElement.title = "加入收藏最愛";
     btnElement.setAttribute("aria-pressed", "false");
     if (cardEl) cardEl.classList.remove("is-favorited");
@@ -361,7 +374,7 @@ function renderGallery() {
     if (emptyMsg) {
       emptyMsg.textContent =
         activeTag === FAV_FILTER_TAG
-          ? "目前還沒有收藏任何指令，點擊卡片右上角的「☆」即可將喜愛的靈感收進這裡！"
+          ? "目前還沒有收藏任何指令，點擊卡片右上角的「☆ 收藏」即可將喜愛的靈感收進這裡！"
           : "找不到符合條件的生圖指令，請嘗試其他關鍵字或切換標籤。";
     }
     emptyState.hidden = false;
@@ -372,7 +385,7 @@ function renderGallery() {
   galleryGrid.innerHTML = filtered.map((item) => createCardHTML(item)).join("");
 }
 
-// 單張卡片 HTML 結構（右上角配置 ★ 收藏最愛按鈕）
+// 單張卡片 HTML 結構（右上角配置毛玻璃膠囊收藏按鈕）
 function createCardHTML(item) {
   const isFav = favoriteSet.has(item.favKey);
   const hasImage = Boolean(item.image);
@@ -385,7 +398,7 @@ function createCardHTML(item) {
       aria-label="收藏最愛"
       aria-pressed="${isFav}"
       title="${isFav ? "取消收藏" : "加入收藏最愛"}"
-    >${isFav ? "★" : "☆"}</button>
+    >${getFavBtnInnerHTML(isFav)}</button>
   `;
 
   const imageSection = hasImage
