@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Prompt Daily | 生圖指令與靈感庫</title>
+  <!-- 引入字體：思源黑體、Inter 與等寬字體 JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 頂部導覽與搜尋列 -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-badge">DAILY RSS ARCHIVE</span>
+        <h1>AI 生圖指令與視覺靈感庫</h1>
+        <p class="subtitle">自動彙整每日實用 Prompt 結構、光影控制與風格參數</p>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="搜尋關鍵字、鏡頭焦段、風格或英文指令..." autocomplete="off">
+          <button id="clearSearchBtn" class="clear-btn" title="清除搜尋" hidden>&times;</button>
+        </div>
+        <a id="addFormLink" href="#" target="_blank" rel="noopener noreferrer" class="btn-outline">
+          ＋ 手動新增靈感
+        </a>
+      </div>
+    </div>
+
+    <!-- 分類標籤篩選列 -->
+    <div class="container filter-bar-wrapper">
+      <div id="tagContainer" class="tag-bar" role="tablist" aria-label="分類篩選">
+        <!-- 由 script.js 動態生成標籤按鈕 -->
+      </div>
+      <div id="statsCount" class="stats-count">載入中...</div>
+    </div>
+  </header>
+
+  <!-- 主內容卡片牆 -->
+  <main class="container main-content">
+    <!-- 載入狀態 -->
+    <div id="loadingState" class="status-box">
+      <div class="spinner"></div>
+      <p>正在同步靈感資料庫...</p>
+    </div>
+
+    <!-- 空狀態提示 -->
+    <div id="emptyState" class="status-box" hidden>
+      <p>找不到符合條件的生圖指令，請嘗試其他關鍵字或切換標籤。</p>
+      <button id="resetFilterBtn" class="btn-outline">重設所有篩選</button>
+    </div>
+
+    <!-- 瀑布流卡片容器 -->
+    <section id="galleryGrid" class="masonry-grid" aria-live="polite"></section>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>Powered by RSS Automation &amp; Google Sheets Database</p>
+    </div>
+  </footer>
+
+  <!-- 複製成功浮動提示 (Toast) -->
+  <div id="toast" class="toast" role="status" aria-live="polite">已複製完整 Prompt 指令</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
