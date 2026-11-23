@@ -1,93 +1,173 @@
-/* =========================================
-   升級版：懸浮毛玻璃膠囊收藏按鈕
-   ========================================= */
-.prompt-card {
-  position: relative;
+:root {
+  --bg-page: #FAF8F5;
+  --bg-card: #FFFFFF;
+  --bg-code: #F4F1EC;
+  --text-primary: #2C2A28;
+  --text-secondary: #6E6A64;
+  --text-muted: #9C968E;
+  --border-subtle: #E6E1D8;
+  --accent-dark: #3A3632;
+  --accent-warm: #8C6D53;
+  --highlight-bg: #E8DFD3;
+  --highlight-text: #5C4430;
+  --success-green: #3B6E52;
+  --star-gold: #E5A93C;
+  --radius-card: 12px;
+  --radius-sm: 6px;
+  --shadow-soft: 0 4px 20px rgba(44, 42, 40, 0.04);
+  --shadow-hover: 0 10px 28px rgba(44, 42, 40, 0.09);
 }
 
-.fav-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 5;
-  height: 32px;
-  padding: 0 12px 0 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  background: rgba(28, 26, 24, 0.52);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 頂部區塊 */
+.site-header {
+  background-color: rgba(250, 248, 245, 0.92);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 24px 0 16px;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.brand-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent-warm);
+  margin-bottom: 4px;
+}
+
+.brand h1 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* 搜尋框與新增按鈕 */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  max-width: 520px;
+  justify-content: flex-end;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 34px 10px 38px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  background-color: var(--bg-card);
+  font-size: 14px;
+  color: var(--text-primary);
   font-family: inherit;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--accent-warm);
+  box-shadow: 0 0 0 3px rgba(140, 109, 83, 0.12);
+}
+
+.clear-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-outline {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  white-space: nowrap;
+  padding: 9px 14px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
-  transition: all 0.22s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.2s;
 }
 
-.fav-btn .fav-icon {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+.btn-outline:hover {
+  border-color: var(--accent-dark);
+  background-color: var(--accent-dark);
+  color: #FFFFFF;
 }
 
-.fav-btn:hover {
-  transform: translateY(-1.5px);
-  background: rgba(28, 26, 24, 0.78);
-  border-color: rgba(245, 201, 107, 0.55);
-  color: #FFE7B3;
+/* 標籤篩選列 */
+.filter-bar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
 }
 
-.fav-btn:hover .fav-icon {
-  transform: rotate(-12deg) scale(1.1);
-}
-
-/* 已收藏狀態：暖霧奶油金漸層 ＋ 柔和光暈 */
-.fav-btn.active {
-  background: linear-gradient(135deg, #FFFDF9 0%, #FAF0DC 100%);
-  border-color: #E2B96B;
-  color: #7A5417;
-  font-weight: 600;
-  box-shadow: 0 4px 14px rgba(212, 158, 53, 0.24), 0 0 0 3px rgba(229, 169, 60, 0.15);
-}
-
-.fav-btn.active .fav-icon {
-  color: #E5A93C;
-  animation: favPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes favPop {
-  0% { transform: scale(0.7); }
-  60% { transform: scale(1.25); }
-  100% { transform: scale(1); }
-}
-
-/* 無圖片卡片時的右上角配色適配 */
-.prompt-card.no-image .fav-btn {
-  background: #F4F1EC;
-  border-color: #E2DCD2;
-  color: #6E6A64;
-  box-shadow: none;
-}
-
-.prompt-card.no-image .fav-btn:hover {
-  background: #ECE6DC;
-  border-color: #D4B475;
-  color: #5C4430;
-}
-
-.prompt-card.no-image .fav-btn.active {
-  background: linear-gradient(135deg, #FFFDF9 0%, #FAF0DC 100%);
-  border-color: #E2B96B;
-  color: #7A5417;
-}
-
-.prompt-card.no-image .card-meta {
-  padding-right: 90px;
-}
+.tag-bar {
+  display: flex;
