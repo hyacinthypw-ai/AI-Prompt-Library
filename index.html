@@ -39,7 +39,7 @@
     <!-- 分類標籤篩選列 -->
     <div class="container filter-bar-wrapper">
       <div id="tagContainer" class="tag-bar" role="tablist" aria-label="分類篩選">
-        <!-- 由 script.js 動態生成標籤按鈕 -->
+        <!-- 由 script.js 動態生成「全部」、「★ 已收藏」與分類標籤按鈕 -->
       </div>
       <div id="statsCount" class="stats-count">載入中...</div>
     </div>
@@ -55,8 +55,8 @@
 
     <!-- 空狀態提示 -->
     <div id="emptyState" class="status-box" hidden>
-      <p>找不到符合條件的生圖指令，請嘗試其他關鍵字或切換標籤。</p>
-      <button id="resetFilterBtn" class="btn-outline">重設所有篩選</button>
+      <p id="emptyStateText">找不到符合條件的生圖指令，請嘗試其他關鍵字或切換標籤。</p>
+      <button id="resetFilterBtn" class="btn-outline">返回全部靈感</button>
     </div>
 
     <!-- 瀑布流卡片容器 -->
@@ -70,7 +70,7 @@
     </div>
   </footer>
 
-  <!-- 複製成功浮動提示 (Toast) -->
+  <!-- 浮動提示 (Toast) -->
   <div id="toast" class="toast" role="status" aria-live="polite">已複製完整 Prompt 指令</div>
 
   <script src="script.js"></script>
