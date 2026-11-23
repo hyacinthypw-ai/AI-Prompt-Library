@@ -7,8 +7,8 @@
  * 3. 試算表第一列欄位順序建議：date, title, tip, prompt, image, tags, model, link
  */
 const CONFIG = {
-  GOOGLE_SHEET_CSV_URL: "", // 貼上發布到網路的 CSV 連結
-  GOOGLE_FORM_URL: "#"      // 貼上你的 Google 表單連結（供手動新增靈感）
+  GOOGLE_SHEET_CSV_URL: "貼上剛剛複製的發布到網路.csv網址",
+  GOOGLE_FORM_URL: "貼上這張Google試算表本身的編輯網址（或Google表單網址）"
 };
 
 // 預設測試資料（當尚未填入 CSV 網址時自動顯示）
