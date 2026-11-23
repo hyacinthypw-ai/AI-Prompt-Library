@@ -7,8 +7,8 @@
  * 3. 試算表第一列欄位順序建議：date, title, tip, prompt, image, tags, model, link
  */
 const CONFIG = {
-  GOOGLE_SHEET_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYkULLCdzEGRS3LLSTNbCQRYcdWUZVSLorIuNwS4TC0m02aMaG8VZ0rTDcuB7UFwfZpBV-FnjZvFUY/pub?output=csv", // 貼上發布到網路的 CSV 連結
-  GOOGLE_FORM_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYkULLCdzEGRS3LLSTNbCQRYcdWUZVSLorIuNwS4TC0m02aMaG8VZ0rTDcuB7UFwfZpBV-FnjZvFUY/pub?output=csv"      // 貼上你的 Google 試算表或表單連結
+  GOOGLE_SHEET_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYkULLCdzEGRS3LLSTNbCQRYcdWUZVSLorIuNwS4TC0m02aMaG8VZ0rTDcuB7UFwfZpBV-FnjZvFUY/pub?output=csv",
+  GOOGLE_FORM_URL: "貼上這張Google試算表的網址"
 };
 
 const FAVORITES_STORAGE_KEY = "ai_prompt_library_favorites_v1";
