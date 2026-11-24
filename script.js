@@ -7,7 +7,7 @@
  * 3. 試算表第一列欄位順序建議：date, title, tip, prompt, image, tags, model, link
  */
 const CONFIG = {
-  GOOGLE_SHEET_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYkULLCdzEGRS3LLSTNbCQRYcdWUZVSLorIuNwS4TC0m02aMaG8VZ0rTDcuB7UFwfZpBV-FnjZvFUY/pub?output=csv",
+  GOOGLE_SHEET_CSV_URL: "",
   GOOGLE_FORM_URL: ""
 };
 
