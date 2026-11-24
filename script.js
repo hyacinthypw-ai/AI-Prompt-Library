@@ -8,7 +8,7 @@
  */
 const CONFIG = {
   GOOGLE_SHEET_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYkULLCdzEGRS3LLSTNbCQRYcdWUZVSLorIuNwS4TC0m02aMaG8VZ0rTDcuB7UFwfZpBV-FnjZvFUY/pub?output=csv",
-  GOOGLE_FORM_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYkULLCdzEGRS3LLSTNbCQRYcdWUZVSLorIuNwS4TC0m02aMaG8VZ0rTDcuB7UFwfZpBV-FnjZvFUY/pubhtml"
+  GOOGLE_FORM_URL: ""
 };
 
 const FAVORITES_STORAGE_KEY = "ai_prompt_library_favorites_v1";
